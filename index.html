@@ -36,11 +36,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
 .classified-stamp::before{content:'●';margin-right:8px;animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 
-.hero-image-frame{width:260px;height:260px;background:var(--paper);border:1px solid rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;margin-bottom:32px;position:relative;box-shadow:0 4px 40px rgba(0,0,0,.6),0 0 80px var(--red-gl)}
+.hero-image-frame{width:100%;max-width:760px;aspect-ratio:3/1;background:var(--paper);border:1px solid rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;margin-bottom:32px;position:relative;box-shadow:0 4px 40px rgba(0,0,0,.6),0 0 80px var(--red-gl)}
 .hero-image-frame::before,.hero-image-frame::after{content:'';position:absolute;width:20px;height:20px;border-color:var(--red-dim);border-style:solid}
 .hero-image-frame::before{top:8px;left:8px;border-width:2px 0 0 2px}
 .hero-image-frame::after{bottom:8px;right:8px;border-width:0 2px 2px 0}
-.hero-image-frame img{max-width:85%;max-height:85%;object-fit:contain}
+.hero-image-frame img{width:100%;height:100%;object-fit:cover}
 .hero-image-frame .ph{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#999;letter-spacing:2px}
 
 .hero-ticker{font-family:'IBM Plex Mono',monospace;font-size:48px;font-weight:700;letter-spacing:8px;margin-bottom:16px}
@@ -73,6 +73,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
 .proof-frame::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red)}
 .proof-frame img{width:100%;display:block;opacity:.92;transition:opacity .3s}
 .proof-frame:hover img{opacity:1}
+
+.trending-card{background:var(--bg2);border:1px solid var(--bdr);overflow:hidden}
+.trending-header{display:flex;align-items:center;gap:8px;padding:12px 20px;border-bottom:1px solid var(--bdr-s);font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;letter-spacing:1px}
+.trending-live{margin-left:auto;display:flex;align-items:center;gap:5px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red)}
+.trending-frame{padding:3px;background:var(--bg2)}
+.trending-frame img{width:100%;display:block}
+.trending-footer{padding:10px 20px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gray-d);display:flex;align-items:center;gap:6px;border-top:1px solid var(--bdr-s)}
 
 .divider{display:flex;align-items:center;justify-content:center;gap:16px;padding:0 40px;color:var(--gray-d);font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase}
 .divider::before,.divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--bdr),transparent)}
@@ -142,7 +149,7 @@ nav{padding:0 20px}
 .nav-links.open{display:flex}
 .mobile-toggle{display:flex}
 .hero{padding:110px 20px 70px}
-.hero-image-frame{width:200px;height:200px}
+.hero-image-frame{width:100%;max-width:100%}
 .hero-ticker{font-size:36px;letter-spacing:5px}
 .hero-actions{flex-direction:column;align-items:center}
 .action-btn{width:100%;max-width:280px;justify-content:center}
@@ -201,6 +208,23 @@ nav{padding:0 20px}
       <img src="proof.jpg" alt="Leaked email evidence collage">
     </div>
   </div>
+
+  <!-- TRENDING -->
+  <div class="trending-card anim d6" style="margin-top:56px;width:100%;max-width:760px;">
+    <div class="trending-header">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--red)"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+      <span>Currently Trending</span>
+      <span class="trending-live"><span class="proof-dot"></span> Live</span>
+    </div>
+    <div class="trending-frame">
+      <img src="trends.jpg" alt="Google Trends — goyim search interest spiking">
+    </div>
+    <div class="trending-footer">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--gray-d)"><path d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+      Google Trends · "goyim" search interest at all-time high · Worldwide · Past 90 days
+    </div>
+  </div>
+
 </section>
 
 <div class="divider">Section 01</div>
