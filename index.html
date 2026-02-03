@@ -3,1019 +3,305 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>$GOYIM - The Leaked Email</title>
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Product+Sans:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<title>$GOYIM — CLASSIFIED</title>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --gmail-red: #c5221f;
-    --gmail-blue: #1a73e8;
-    --gmail-bg: #f6f8fc;
-    --gmail-white: #ffffff;
-    --gmail-border: #e0e0e0;
-    --gmail-text: #202124;
-    --gmail-text-secondary: #5f6368;
-    --gmail-hover: #eaf1fb;
-    --gmail-sidebar: #d3e3fd;
-    --gmail-yellow: #f9ab00;
-    --gmail-green: #34a853;
-    --sidebar-width: 256px;
-  }
+:root{--bg:#0b0b0b;--bg2:#101010;--bg3:#161616;--bg4:#1c1c1c;--red:#c41e1e;--red-dim:#8b1515;--red-gl:rgba(196,30,30,.15);--white:#e8e4de;--white-d:#b0aca5;--gray:#6b6760;--gray-d:#3a3835;--paper:#f2ece0;--bdr:rgba(196,30,30,.12);--bdr-s:rgba(255,255,255,.06)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--red);color:#fff}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(11,11,11,.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--bdr-s)}
+.nav-brand{display:flex;align-items:center;gap:12px}
+.nav-brand .stamp{width:32px;height:32px;border:2px solid var(--red);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'Special Elite',monospace;font-size:11px;color:var(--red);letter-spacing:1px;transform:rotate(-3deg)}
+.nav-brand span{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:16px;letter-spacing:3px}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;color:var(--gray);text-decoration:none;letter-spacing:2px;text-transform:uppercase;transition:color .3s;position:relative}
+.nav-links a:hover{color:var(--white)}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--red);transition:width .3s}
+.nav-links a:hover::after{width:100%}
+.nav-cta{padding:8px 20px!important;border:1px solid var(--red)!important;color:var(--red)!important;border-radius:2px;transition:all .3s!important}
+.nav-cta:hover{background:var(--red)!important;color:#fff!important}
+.nav-cta::after{display:none!important}
+.mobile-toggle{display:none;background:0 0;border:1px solid var(--bdr-s);border-radius:2px;width:36px;height:36px;align-items:center;justify-content:center;cursor:pointer}
+.mobile-toggle svg{fill:var(--white-d)}
 
-  body {
-    font-family: 'Roboto', -apple-system, sans-serif;
-    background: var(--gmail-bg);
-    color: var(--gmail-text);
-    overflow-x: hidden;
-  }
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 24px 100px;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:100%;background:radial-gradient(ellipse at 50% 0%,rgba(196,30,30,.06) 0%,transparent 60%);pointer-events:none}
+.hero::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,.008) 2px,rgba(255,255,255,.008) 4px);pointer-events:none}
 
-  /* HEADER */
-  .gmail-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 64px;
-    background: var(--gmail-white);
-    border-bottom: 1px solid var(--gmail-border);
-    display: flex;
-    align-items: center;
-    padding: 0 16px;
-    z-index: 1000;
-    gap: 8px;
-  }
+.classified-stamp{font-family:'Special Elite',monospace;font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--red);border:2px solid var(--red);padding:6px 20px;transform:rotate(-2deg);margin-bottom:40px;display:inline-block}
+.classified-stamp::before{content:'●';margin-right:8px;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 
-  .hamburger {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  .hamburger:hover { background: rgba(0,0,0,0.06); }
-  .hamburger svg { fill: var(--gmail-text-secondary); }
+.hero-image-frame{width:260px;height:260px;background:var(--paper);border:1px solid rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;margin-bottom:32px;position:relative;box-shadow:0 4px 40px rgba(0,0,0,.6),0 0 80px var(--red-gl)}
+.hero-image-frame::before,.hero-image-frame::after{content:'';position:absolute;width:20px;height:20px;border-color:var(--red-dim);border-style:solid}
+.hero-image-frame::before{top:8px;left:8px;border-width:2px 0 0 2px}
+.hero-image-frame::after{bottom:8px;right:8px;border-width:0 2px 2px 0}
+.hero-image-frame img{max-width:85%;max-height:85%;object-fit:contain}
+.hero-image-frame .ph{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#999;letter-spacing:2px}
 
-  .gmail-logo {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 0 16px;
-    min-width: 200px;
-  }
-  .gmail-logo-icon {
-    width: 40px;
-    height: 30px;
-    position: relative;
-  }
-  .gmail-logo-text {
-    font-size: 22px;
-    font-weight: 400;
-    color: var(--gmail-text-secondary);
-    letter-spacing: -0.5px;
-  }
-  .gmail-logo-text span { color: var(--gmail-red); font-weight: 500; }
+.hero-ticker{font-family:'IBM Plex Mono',monospace;font-size:48px;font-weight:700;letter-spacing:8px;margin-bottom:16px}
+.hero-ticker .dollar{color:var(--red)}
+.hero-sub{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--gray);letter-spacing:4px;text-transform:uppercase;margin-bottom:48px}
 
-  .search-bar {
-    flex: 1;
-    max-width: 720px;
-    height: 48px;
-    background: var(--gmail-bg);
-    border-radius: 24px;
-    display: flex;
-    align-items: center;
-    padding: 0 16px;
-    gap: 12px;
-    transition: background 0.2s, box-shadow 0.2s;
-  }
-  .search-bar:hover, .search-bar:focus-within {
-    background: var(--gmail-white);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
-  }
-  .search-bar svg { fill: var(--gmail-text-secondary); flex-shrink: 0; }
-  .search-bar input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    background: transparent;
-    color: var(--gmail-text);
-    font-family: 'Roboto', sans-serif;
-  }
-  .search-bar input::placeholder { color: var(--gmail-text-secondary); }
+.ca-wrap{width:100%;max-width:520px;margin-bottom:40px}
+.ca-label{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--red-dim);margin-bottom:8px;text-align:left}
+.ca-bar{display:flex;align-items:center;background:var(--bg2);border:1px solid var(--bdr);padding:4px 4px 4px 18px;cursor:pointer;transition:border-color .3s,box-shadow .3s;position:relative}
+.ca-bar:hover{border-color:var(--red-dim);box-shadow:0 0 30px var(--red-gl)}
+.ca-val{flex:1;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--white-d);letter-spacing:.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ca-btn{padding:10px 18px;background:var(--red);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.ca-btn:hover{background:#d42a2a}
+.ca-btn svg{fill:#fff}
+.ca-toast{position:absolute;top:-34px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:1px;padding:5px 14px;opacity:0;transition:opacity .2s;pointer-events:none}
+.ca-bar.copied .ca-toast{opacity:1}
 
-  .header-right {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin-left: auto;
-  }
-  .header-icon-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.2s;
-    border: none;
-    background: none;
-  }
-  .header-icon-btn:hover { background: rgba(0,0,0,0.06); }
-  .header-icon-btn svg { fill: var(--gmail-text-secondary); }
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.action-btn{display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:14px 28px;border:1px solid var(--bdr-s);color:var(--white-d);background:var(--bg2);transition:all .3s}
+.action-btn:hover{border-color:var(--red-dim);color:var(--white);box-shadow:0 0 20px var(--red-gl);transform:translateY(-1px)}
+.action-btn svg{width:14px;height:14px}
+.action-btn.primary{background:var(--red);color:#fff;border-color:var(--red)}
+.action-btn.primary:hover{background:#d42a2a;box-shadow:0 0 30px rgba(196,30,30,.3)}
+.action-btn .live{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:blink 1.5s infinite}
 
-  .avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: var(--gmail-blue);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: 500;
-    margin-left: 8px;
-    cursor: pointer;
-  }
+.proof-banner{width:100%;max-width:760px;margin-top:56px}
+.proof-label{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.proof-dot{width:5px;height:5px;border-radius:50%;background:var(--red);animation:blink 2s infinite}
+.proof-frame{border:1px solid var(--bdr);background:var(--bg2);padding:3px;position:relative;overflow:hidden}
+.proof-frame::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red)}
+.proof-frame img{width:100%;display:block;opacity:.92;transition:opacity .3s}
+.proof-frame:hover img{opacity:1}
 
-  /* SIDEBAR */
-  .sidebar {
-    position: fixed;
-    top: 64px;
-    left: 0;
-    width: var(--sidebar-width);
-    height: calc(100vh - 64px);
-    background: var(--gmail-bg);
-    padding: 8px 8px 8px 8px;
-    overflow-y: auto;
-    z-index: 100;
-  }
+.divider{display:flex;align-items:center;justify-content:center;gap:16px;padding:0 40px;color:var(--gray-d);font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--bdr),transparent)}
 
-  .compose-btn {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 0 24px;
-    height: 56px;
-    background: var(--gmail-sidebar);
-    border: none;
-    border-radius: 16px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--gmail-text);
-    cursor: pointer;
-    margin-bottom: 12px;
-    width: fit-content;
-    font-family: 'Roboto', sans-serif;
-    letter-spacing: 0.25px;
-    transition: box-shadow 0.2s, background 0.15s;
-  }
-  .compose-btn:hover {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-    background: #c2d9f7;
-  }
-  .compose-btn svg { fill: var(--gmail-text); }
+.email-section{max-width:760px;margin:0 auto;padding:80px 24px}
+.section-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--red);text-align:center;margin-bottom:8px}
+.section-heading{font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:700;text-align:center;letter-spacing:2px;margin-bottom:48px}
 
-  .sidebar-item {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 0 24px;
-    height: 32px;
-    border-radius: 0 16px 16px 0;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--gmail-text);
-    cursor: pointer;
-    transition: background 0.15s;
-    letter-spacing: 0.2px;
-    position: relative;
-  }
-  .sidebar-item:hover { background: rgba(0,0,0,0.04); }
-  .sidebar-item.active {
-    background: var(--gmail-sidebar);
-    font-weight: 700;
-  }
-  .sidebar-item svg { fill: var(--gmail-text-secondary); width: 20px; height: 20px; }
-  .sidebar-item.active svg { fill: var(--gmail-text); }
-  .sidebar-item .count {
-    margin-left: auto;
-    font-size: 12px;
-    font-weight: 700;
-  }
+.email-card{background:var(--bg2);border:1px solid var(--bdr);overflow:hidden;position:relative}
+.email-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red)}
+.email-top{padding:24px 28px 20px;border-bottom:1px solid var(--bdr-s);display:flex;gap:16px}
+.email-av{width:42px;height:42px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:700;color:#fff;flex-shrink:0}
+.email-info{flex:1}
+.email-from{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600}
+.email-from span{color:var(--gray);font-weight:400;font-size:12px}
+.email-to{font-size:12px;color:var(--gray);margin-top:3px}
+.email-date{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gray);text-align:right;white-space:nowrap;flex-shrink:0}
+.email-tag{display:inline-flex;align-items:center;gap:5px;margin-top:6px;font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--red);text-transform:uppercase}
+.email-tag .dot{width:5px;height:5px;border-radius:50%;background:var(--red);animation:blink 2s infinite}
+.email-body{padding:28px;font-size:14px;line-height:1.8;color:var(--white-d)}
+.email-body p{margin-bottom:16px}
+.email-footer{margin-top:24px;padding-top:20px;border-top:1px solid var(--bdr-s);font-size:11px;color:var(--gray-d);line-height:1.7}
+.redacted{background:var(--white-d);color:var(--white-d);padding:0 36px;user-select:none}
 
-  .sidebar-divider {
-    height: 1px;
-    background: var(--gmail-border);
-    margin: 8px 24px;
-  }
+.docs-card{margin-top:16px;background:var(--bg2);border:1px solid var(--bdr);overflow:hidden}
+.docs-top{display:flex;align-items:center;gap:10px;padding:14px 24px;border-bottom:1px solid var(--bdr-s);font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;letter-spacing:1px}
+.docs-top svg{fill:var(--red);flex-shrink:0}
+.docs-badge{margin-left:auto;font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--red);color:#fff;padding:3px 10px}
+.docs-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bdr-s)}
+.doc-item{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg2);text-decoration:none;color:var(--white);transition:background .2s}
+.doc-item:hover{background:var(--bg3)}
+.doc-icon{width:34px;height:34px;background:var(--red);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.doc-icon.alt{background:var(--red-dim)}
+.doc-icon svg{fill:#fff}
+.doc-name{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.5px}
+.doc-meta{font-size:10px;color:var(--gray);margin-top:2px}
+.doc-hint{font-size:9px;color:var(--red-dim);margin-top:2px;font-style:italic}
+.docs-bottom{padding:10px 24px;font-size:10px;color:var(--gray-d);display:flex;align-items:center;gap:6px;border-top:1px solid var(--bdr-s);background:var(--bg2)}
+.docs-bottom svg{fill:var(--gray-d);flex-shrink:0}
 
-  /* MAIN CONTENT */
-  .main-content {
-    margin-left: var(--sidebar-width);
-    margin-top: 64px;
-    padding: 0;
-    min-height: calc(100vh - 64px);
-  }
+.about-section{max-width:760px;margin:0 auto;padding:80px 24px}
+.about-image{text-align:center;margin-bottom:40px}
+.about-image img{max-width:200px;width:100%;border:1px solid var(--bdr)}
+.info-stack{display:grid;gap:2px}
+.info-item{background:var(--bg2);border-left:3px solid var(--red);padding:28px 28px 28px 24px;transition:all .3s}
+.info-item:hover{background:var(--bg3);border-left-color:#e02020}
+.info-item-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.info-item-icon{font-size:15px;width:28px;text-align:center}
+.info-item h3{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.info-item p{font-size:13px;line-height:1.8;color:var(--white-d);padding-left:38px}
 
-  /* EMAIL VIEW */
-  .email-view {
-    background: var(--gmail-white);
-    margin: 0 16px;
-    border-radius: 8px;
-    overflow: hidden;
-  }
+footer{border-top:1px solid var(--bdr-s);padding:40px 24px;text-align:center}
+footer p{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gray-d);line-height:2;letter-spacing:1px;max-width:480px;margin:0 auto}
 
-  .email-toolbar {
-    display: flex;
-    align-items: center;
-    padding: 8px 16px;
-    border-bottom: 1px solid var(--gmail-border);
-    gap: 4px;
-  }
-  .toolbar-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border: none;
-    background: none;
-    transition: background 0.15s;
-  }
-  .toolbar-btn:hover { background: rgba(0,0,0,0.06); }
-  .toolbar-btn svg { fill: var(--gmail-text-secondary); }
-  .toolbar-divider { width: 1px; height: 20px; background: var(--gmail-border); margin: 0 4px; }
+@keyframes fade-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.anim{animation:fade-in .7s ease both}
+.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}.d4{animation-delay:.4s}.d5{animation-delay:.5s}.d6{animation-delay:.6s}
 
-  .email-subject-row {
-    padding: 20px 72px 0;
-  }
-  .email-subject {
-    font-size: 22px;
-    font-weight: 400;
-    color: var(--gmail-text);
-    line-height: 1.4;
-  }
-  .email-label {
-    display: inline-block;
-    background: #dfe1e5;
-    color: var(--gmail-text-secondary);
-    font-size: 12px;
-    font-weight: 500;
-    padding: 0 6px;
-    border-radius: 4px;
-    margin-left: 8px;
-    vertical-align: middle;
-  }
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--red-dim)}
+::-webkit-scrollbar-thumb:hover{background:var(--red)}
 
-  .email-header-info {
-    padding: 16px 16px 16px 72px;
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    position: relative;
-  }
-  .sender-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #7b1fa2;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    font-weight: 500;
-    flex-shrink: 0;
-    position: absolute;
-    left: 16px;
-    top: 16px;
-  }
-  .sender-info { flex: 1; }
-  .sender-name {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--gmail-text);
-  }
-  .sender-email {
-    font-size: 12px;
-    color: var(--gmail-text-secondary);
-    font-weight: 400;
-  }
-  .email-date {
-    font-size: 12px;
-    color: var(--gmail-text-secondary);
-    white-space: nowrap;
-  }
-  .email-to {
-    font-size: 12px;
-    color: var(--gmail-text-secondary);
-    margin-top: 2px;
-  }
-
-  .email-body {
-    padding: 8px 72px 32px;
-    font-size: 14px;
-    line-height: 1.65;
-    color: var(--gmail-text);
-  }
-  .email-body p { margin-bottom: 16px; }
-
-  .email-body .redacted {
-    background: #000;
-    color: #000;
-    padding: 0 40px;
-    border-radius: 2px;
-    user-select: none;
-  }
-
-  .email-confidential {
-    margin-top: 24px;
-    padding-top: 16px;
-    border-top: 1px solid var(--gmail-border);
-    font-size: 12px;
-    color: var(--gmail-text-secondary);
-    line-height: 1.6;
-  }
-
-  /* GOYIM INFO SECTION */
-  .info-section {
-    background: var(--gmail-white);
-    margin: 16px 16px;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid var(--gmail-border);
-  }
-
-  .info-header {
-    background: linear-gradient(135deg, #1a73e8, #174ea6);
-    padding: 32px;
-    color: white;
-  }
-  .info-header h2 {
-    font-size: 28px;
-    font-weight: 500;
-    margin-bottom: 8px;
-  }
-  .info-header p {
-    font-size: 14px;
-    opacity: 0.9;
-    line-height: 1.5;
-  }
-
-  .info-body {
-    padding: 32px;
-  }
-
-  .info-card {
-    background: var(--gmail-bg);
-    border-radius: 12px;
-    padding: 24px;
-    margin-bottom: 16px;
-    border: 1px solid var(--gmail-border);
-  }
-  .info-card h3 {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--gmail-text);
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .info-card h3 .icon {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: var(--gmail-blue);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 700;
-  }
-  .info-card p {
-    font-size: 14px;
-    line-height: 1.7;
-    color: var(--gmail-text-secondary);
-  }
-
-  /* TOKEN INFO */
-  .token-section {
-    background: var(--gmail-white);
-    margin: 0 16px 16px;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid var(--gmail-border);
-  }
-
-  .token-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--gmail-border);
-  }
-  .token-cell {
-    background: var(--gmail-white);
-    padding: 24px;
-  }
-  .token-cell.full { grid-column: 1 / -1; }
-  .token-cell label {
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--gmail-text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    display: block;
-    margin-bottom: 8px;
-  }
-  .token-cell .value {
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--gmail-text);
-    word-break: break-all;
-  }
-  .token-cell .value.ticker {
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--gmail-blue);
-  }
-
-  .ca-box {
-    background: var(--gmail-bg);
-    border: 1px solid var(--gmail-border);
-    border-radius: 8px;
-    padding: 12px 16px;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 13px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    cursor: pointer;
-    transition: background 0.15s;
-    position: relative;
-  }
-  .ca-box:hover { background: #e8eaed; }
-  .ca-box .ca-text { flex: 1; word-break: break-all; color: var(--gmail-text); }
-  .ca-box .copy-icon { fill: var(--gmail-text-secondary); flex-shrink: 0; }
-  .ca-box .copied-tooltip {
-    position: absolute;
-    top: -32px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #323232;
-    color: white;
-    padding: 4px 12px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-family: 'Roboto', sans-serif;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s;
-  }
-  .ca-box.copied .copied-tooltip { opacity: 1; }
-
-  /* SOCIAL LINKS */
-  .social-section {
-    background: var(--gmail-white);
-    margin: 0 16px 16px;
-    border-radius: 8px;
-    padding: 24px 32px;
-    border: 1px solid var(--gmail-border);
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  .social-section span {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--gmail-text-secondary);
-  }
-  .social-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 20px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.2s;
-    border: 1px solid var(--gmail-border);
-    color: var(--gmail-text);
-    background: var(--gmail-white);
-  }
-  .social-btn:hover {
-    background: var(--gmail-hover);
-    border-color: var(--gmail-blue);
-    color: var(--gmail-blue);
-  }
-  .social-btn svg { width: 18px; height: 18px; }
-  .social-btn.primary {
-    background: var(--gmail-blue);
-    color: white;
-    border-color: var(--gmail-blue);
-  }
-  .social-btn.primary:hover {
-    background: #1557b0;
-    box-shadow: 0 1px 3px rgba(26,115,232,0.3);
-  }
-  .mindshare-btn {
-    background: linear-gradient(135deg, #ff6b35, #ff2d2d);
-    color: white !important;
-    border-color: #ff6b35 !important;
-    position: relative;
-    overflow: hidden;
-  }
-  .mindshare-btn:hover {
-    background: linear-gradient(135deg, #e55a2b, #e02525) !important;
-    color: white !important;
-    border-color: #e55a2b !important;
-    box-shadow: 0 2px 8px rgba(255,45,45,0.35);
-  }
-  .mindshare-btn svg { fill: white !important; }
-  .mindshare-pulse {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #00ff88;
-    animation: pulse 1.5s infinite;
-  }
-
-  /* FOOTER */
-  .gmail-footer {
-    margin: 0 16px 16px;
-    padding: 16px 32px;
-    font-size: 12px;
-    color: var(--gmail-text-secondary);
-    text-align: center;
-    line-height: 1.6;
-  }
-
-  /* LEAKED DOCUMENTS */
-  .leaked-section {
-    background: var(--gmail-white);
-    margin: 8px 16px 0;
-    border-radius: 0 0 8px 8px;
-    border: 1px solid var(--gmail-border);
-    border-top: none;
-    overflow: hidden;
-    animation: fadeInUp 0.4s ease-out 0.05s both;
-  }
-  .leaked-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 20px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--gmail-text);
-    border-bottom: 1px solid var(--gmail-border);
-    background: #fce8e6;
-  }
-  .leaked-badge {
-    margin-left: auto;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    background: var(--gmail-red);
-    color: white;
-    padding: 3px 8px;
-    border-radius: 4px;
-  }
-  .leaked-attachments {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    padding: 12px 16px;
-  }
-  .attachment-card {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px;
-    border: 1px solid var(--gmail-border);
-    border-radius: 8px;
-    text-decoration: none;
-    color: var(--gmail-text);
-    transition: all 0.15s;
-    background: var(--gmail-white);
-    cursor: pointer;
-  }
-  .attachment-card:hover {
-    background: var(--gmail-hover);
-    border-color: var(--gmail-blue);
-    box-shadow: 0 1px 4px rgba(26,115,232,0.15);
-  }
-  .attachment-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .attachment-icon.pdf { background: #c5221f; }
-  .attachment-icon.ds11 { background: #e37400; }
-  .attachment-info { flex: 1; min-width: 0; }
-  .attachment-name {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--gmail-text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .attachment-meta {
-    font-size: 11px;
-    color: var(--gmail-text-secondary);
-    margin-top: 2px;
-  }
-  .attachment-note {
-    font-size: 10px;
-    color: var(--gmail-yellow);
-    font-weight: 500;
-    margin-top: 2px;
-  }
-  .attachment-action {
-    flex-shrink: 0;
-    opacity: 0;
-    transition: opacity 0.15s;
-  }
-  .attachment-card:hover .attachment-action { opacity: 1; }
-  .leaked-footer {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 10px 20px;
-    font-size: 11px;
-    color: var(--gmail-text-secondary);
-    border-top: 1px solid var(--gmail-border);
-    background: #fafafa;
-  }
-
-  @media (max-width: 900px) {
-    .leaked-attachments { grid-template-columns: 1fr; }
-  }
-
-  /* ANIMATIONS */
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .email-view { animation: fadeInUp 0.4s ease-out; }
-  .info-section { animation: fadeInUp 0.4s ease-out 0.1s both; }
-  .token-section { animation: fadeInUp 0.4s ease-out 0.2s both; }
-  .social-section { animation: fadeInUp 0.4s ease-out 0.3s both; }
-
-  /* UNREAD DOT */
-  .unread-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--gmail-blue);
-    display: inline-block;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-
-  /* Responsive */
-  @media (max-width: 900px) {
-    .sidebar { display: none; }
-    .main-content { margin-left: 0; }
-    .email-subject-row { padding: 16px 16px 0; }
-    .email-header-info { padding: 16px 16px 16px 64px; }
-    .email-header-info .sender-avatar { left: 12px; }
-    .email-body { padding: 8px 16px 24px; }
-    .token-grid { grid-template-columns: 1fr; }
-    .gmail-logo { min-width: auto; padding: 0 8px; }
-    .search-bar { display: none; }
-  }
+@media(max-width:768px){
+nav{padding:0 20px}
+.nav-links{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(11,11,11,.97);flex-direction:column;padding:28px;gap:20px;border-bottom:1px solid var(--bdr-s)}
+.nav-links.open{display:flex}
+.mobile-toggle{display:flex}
+.hero{padding:110px 20px 70px}
+.hero-image-frame{width:200px;height:200px}
+.hero-ticker{font-size:36px;letter-spacing:5px}
+.hero-actions{flex-direction:column;align-items:center}
+.action-btn{width:100%;max-width:280px;justify-content:center}
+.docs-grid{grid-template-columns:1fr}
+.email-top{flex-direction:column}
+.section-heading{font-size:22px}
+}
 </style>
 </head>
 <body>
 
-<!-- GMAIL HEADER -->
-<header class="gmail-header">
-  <div class="hamburger">
-    <svg width="24" height="24" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+<nav>
+  <div class="nav-brand"><div class="stamp">C</div><span>$GOYIM</span></div>
+  <div class="nav-links" id="navLinks">
+    <a href="#evidence">Evidence</a>
+    <a href="#documents">Documents</a>
+    <a href="#about">About</a>
+    <a href="https://x.com/search?q=goyim&src=typed_query" target="_blank">Mindshare</a>
+    <a href="https://x.com/" target="_blank" class="nav-cta">✦ Twitter</a>
   </div>
-  <div class="gmail-logo">
-    <svg class="gmail-logo-icon" viewBox="0 0 75 50" width="40" height="28">
-      <path d="M0 5 L37.5 30 L75 5 L75 45 C75 47.76 72.76 50 70 50 L5 50 C2.24 50 0 47.76 0 45 Z" fill="#c5221f"/>
-      <path d="M0 5 L37.5 30 L75 5" fill="none" stroke="#ea4335" stroke-width="3"/>
-      <rect x="0" y="0" width="5" height="50" fill="#c5221f" rx="2"/>
-      <rect x="70" y="0" width="5" height="50" fill="#c5221f" rx="2"/>
-    </svg>
-    <span class="gmail-logo-text"><span>$GOYIM</span>ail</span>
-  </div>
-  <div class="search-bar">
-    <svg width="24" height="24" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-    <input type="text" id="ca-search" value="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" readonly onclick="copySearchCA()" style="cursor:pointer;" title="Click to copy CA">
-    <span id="ca-copied-msg" style="font-size:11px;color:var(--gmail-green);font-weight:500;opacity:0;transition:opacity 0.2s;white-space:nowrap;">Copied!</span>
-  </div>
-  <div class="header-right">
-    <button class="header-icon-btn">
-      <svg width="24" height="24" viewBox="0 0 24 24"><path d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 9h2V7h-2v2z"/></svg>
-    </button>
-    <button class="header-icon-btn">
-      <svg width="24" height="24" viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
-    </button>
-    <div class="avatar">JE</div>
-  </div>
-</header>
-
-<!-- SIDEBAR -->
-<nav class="sidebar">
-  <button class="compose-btn">
-    <svg width="24" height="24" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-    Compose
+  <button class="mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <svg width="18" height="18" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
   </button>
-
-  <div class="sidebar-item active">
-    <svg viewBox="0 0 24 24"><path d="M19 3H4.99c-1.11 0-1.98.89-1.98 2L3 19c0 1.1.88 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.11-.9-2-2-2zm0 12h-4c0 1.66-1.35 3-3 3s-3-1.34-3-3H4.99V5H19v10z"/></svg>
-    Inbox
-    <span class="count" style="color: var(--gmail-red);">1</span>
-  </div>
-  <div class="sidebar-item">
-    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10h5v-2h-5c-4.34 0-8-3.36-8-7.69C4 7.56 7.69 4 12 4s8 3.56 8 7.69V14c0 1.24-.75 2.41-2.09 2.41-1.34 0-2.41-1.17-2.41-2.41v-4.5C15.5 7.56 13.75 6 12 6S8 7.56 8 9.69s1.75 3.81 4 3.81c1.3 0 2.23-.56 2.91-1.41.72.93 1.69 1.41 2.59 1.41 2.35 0 4.5-1.92 4.5-4.5V12C22 6.48 17.52 2 12 2zm0 11.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-    Leaked
-  </div>
-  <div class="sidebar-item">
-    <svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
-    Saved
-  </div>
-  <div class="sidebar-item">
-    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-    All Mail
-  </div>
-
-  <div class="sidebar-divider"></div>
-
-  <div class="sidebar-item">
-    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-    About $GOYIM
-  </div>
-  <div class="sidebar-item">
-    <svg viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
-    Links
-  </div>
 </nav>
 
-<!-- MAIN -->
-<main class="main-content">
-
-  <!-- EMAIL VIEW -->
-  <div class="email-view">
-    <div class="email-toolbar">
-      <button class="toolbar-btn" title="Back">
-        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-      </button>
-      <button class="toolbar-btn" title="Archive">
-        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M20.54 5.23l-1.39-1.68C18.88 3.21 18.47 3 18 3H6c-.47 0-.88.21-1.16.55L3.46 5.23C3.17 5.57 3 6.02 3 6.5V19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6.5c0-.48-.17-.93-.46-1.27zM12 17.5L6.5 12H10v-2h4v2h3.5L12 17.5zM5.12 5l.81-1h12l.94 1H5.12z"/></svg>
-      </button>
-      <button class="toolbar-btn" title="Report">
-        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
-      </button>
-      <button class="toolbar-btn" title="Delete">
-        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
-      </button>
-      <div class="toolbar-divider"></div>
-      <button class="toolbar-btn" title="Mark unread">
-        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-      </button>
-      <button class="toolbar-btn" title="Snooze">
-        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/><path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-      </button>
+<section class="hero">
+  <div class="classified-stamp anim d1">Classified</div>
+  <div class="hero-image-frame anim d2">
+    <img src="myimage.png" alt="$GOYIM" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <span class="ph" style="display:none">IMAGE</span>
+  </div>
+  <div class="hero-ticker anim d3"><span class="dollar">$</span>GOYIM</div>
+  <div class="hero-sub anim d3">The Leaked Email</div>
+  <div class="ca-wrap anim d4">
+    <div class="ca-label">Solana Contract Address</div>
+    <div class="ca-bar" onclick="copyCA(this)">
+      <span class="ca-val">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span>
+      <button class="ca-btn"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button>
+      <span class="ca-toast">COPIED</span>
     </div>
+  </div>
+  <div class="hero-actions anim d5">
+    <a href="https://x.com/" target="_blank" class="action-btn primary">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      Twitter / X
+    </a>
+    <a href="https://x.com/search?q=goyim&src=typed_query" target="_blank" class="action-btn">
+      <span class="live"></span> 🔥 Mindshare
+    </a>
+  </div>
 
-    <div class="email-subject-row">
-      <h1 class="email-subject">
-        (no subject)
-        <span class="email-label">Inbox</span>
-        <span class="email-label" style="background:#fce8e6; color:#c5221f;">Leaked</span>
-      </h1>
+  <!-- PROOF BANNER -->
+  <div class="proof-banner anim d6">
+    <div class="proof-label"><span class="proof-dot"></span> Proof</div>
+    <div class="proof-frame">
+      <img src="proof.jpg" alt="Leaked email evidence collage">
     </div>
+  </div>
+</section>
 
-    <div class="email-header-info">
-      <div class="sender-avatar">JE</div>
-      <div class="sender-info">
-        <div class="sender-name">Jeffrey Epstein <span class="sender-email">&lt;jeevacation@gmail.com&gt;</span></div>
+<div class="divider">Section 01</div>
+
+<section class="email-section" id="evidence">
+  <div class="section-tag">Exhibit A</div>
+  <h2 class="section-heading">The Original Email</h2>
+  <div class="email-card">
+    <div class="email-top">
+      <div class="email-av">JE</div>
+      <div class="email-info">
+        <div class="email-from">Jeffrey Epstein <span>&lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f09a95958691939184999f9eb0979d91999cde939f9d">[email&#160;protected]</a>&gt;</span></div>
         <div class="email-to">to roger schank</div>
       </div>
-      <div class="email-date">
-        Fri, Oct 23, 2009, 12:01 PM
-        <div style="margin-top: 4px;">
-          <span class="unread-dot"></span>
-          <span style="font-size: 11px; color: var(--gmail-red); font-weight: 500; margin-left: 4px;">LEAKED</span>
-        </div>
-      </div>
+      <div class="email-date">Oct 23, 2009<br>12:01 PM<div class="email-tag"><span class="dot"></span> Leaked</div></div>
     </div>
-
     <div class="email-body">
       <p>This is the way the jew make money.. and made a fortune in the past ten years,, selling short the shippping futures,, let the goyim deal in the real world.---------from Shipping news -the most dramatic growth has been in shipping futures, which allow shipping companies to lay off risks. The most popular futures are forward freight agreements (FFAs) to deliver goods on a particular route at some point in the future. They have grown, in the past year, to be roughly the size of the physical market, according to Bill Lines of the Baltic Exchange, a shipping bazaar in London that sells FFAs. Many in the industry have been suspicious of such futures, because they have been averse to hedging their bets—risk-taking is, after all, part of the game—and averse to complicated financial instruments that they do not really understand.</p>
-
-      <div class="email-confidential">
-        <strong>*************************************************************</strong><br>
+      <div class="email-footer">
+        *************************************************************<br>
         The information contained in this communication is confidential, may be attorney-client privileged, may constitute inside information, and is intended only for the use of the addressee. It is the property of Jeffrey Epstein.<br>
-        Unauthorized use, disclosure or copying of this communication or any part thereof is strictly prohibited and may be unlawful. If you have received this communication in error, please notify us immediately by return e-mail or by e-mail to <span class="redacted">████████</span>, and destroy this communication and all copies thereof, including all attachments.
+        Unauthorized use, disclosure or copying of this communication or any part thereof is strictly prohibited and may be unlawful. If you have received this communication in error, please notify us immediately by return e-mail or by e-mail to <span class="redacted">██████</span>, and destroy this communication and all copies thereof, including all attachments.
       </div>
     </div>
   </div>
 
-  <!-- LEAKED DOCUMENTS -->
-  <div class="leaked-section">
-    <div class="leaked-header">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="#c5221f"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
-      <span>5 Leaked Documents</span>
-      <span class="leaked-badge">DOJ EPSTEIN FILES</span>
+  <div class="docs-card" id="documents">
+    <div class="docs-top">
+      <svg width="16" height="16" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
+      5 Documents
+      <span class="docs-badge">DOJ Epstein Files</span>
     </div>
-    <div class="leaked-attachments">
-
-      <a href="https://www.justice.gov/d9/2024-12/EFTA00935805.pdf" target="_blank" class="attachment-card">
-        <div class="attachment-icon pdf">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
-        </div>
-        <div class="attachment-info">
-          <div class="attachment-name">EFTA00935805.pdf</div>
-          <div class="attachment-meta">Data Set 9 · Justice.gov</div>
-        </div>
-        <div class="attachment-action">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--gmail-text-secondary)"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
-        </div>
+    <div class="docs-grid">
+      <a href="https://www.justice.gov/d9/2024-12/EFTA00935805.pdf" target="_blank" class="doc-item">
+        <div class="doc-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg></div>
+        <div><div class="doc-name">EFTA00935805.pdf</div><div class="doc-meta">Data Set 9 · Justice.gov</div></div>
       </a>
-
-      <a href="https://www.justice.gov/d9/2024-12/EFTA00163398.pdf" target="_blank" class="attachment-card">
-        <div class="attachment-icon pdf">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
-        </div>
-        <div class="attachment-info">
-          <div class="attachment-name">EFTA00163398.pdf</div>
-          <div class="attachment-meta">Data Set 9 · Justice.gov</div>
-        </div>
-        <div class="attachment-action">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--gmail-text-secondary)"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
-        </div>
+      <a href="https://www.justice.gov/d9/2024-12/EFTA00163398.pdf" target="_blank" class="doc-item">
+        <div class="doc-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg></div>
+        <div><div class="doc-name">EFTA00163398.pdf</div><div class="doc-meta">Data Set 9 · Justice.gov</div></div>
       </a>
-
-      <a href="https://www.justice.gov/usao-sdny/jeffrey-epstein-records#dataset11" target="_blank" class="attachment-card">
-        <div class="attachment-icon pdf ds11">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
-        </div>
-        <div class="attachment-info">
-          <div class="attachment-name">EFTA02691163.pdf</div>
-          <div class="attachment-meta">Data Set 11 · Justice.gov Epstein Library</div>
-          <div class="attachment-note">Search "02691163" on the Data Set 11 page</div>
-        </div>
-        <div class="attachment-action">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--gmail-text-secondary)"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
-        </div>
+      <a href="https://www.justice.gov/usao-sdny/jeffrey-epstein-records#dataset11" target="_blank" class="doc-item">
+        <div class="doc-icon alt"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg></div>
+        <div><div class="doc-name">EFTA02691163.pdf</div><div class="doc-meta">Data Set 11 · Justice.gov</div><div class="doc-hint">Search "02691163" on page</div></div>
       </a>
-
-      <a href="https://www.justice.gov/usao-sdny/jeffrey-epstein-records#dataset11" target="_blank" class="attachment-card">
-        <div class="attachment-icon pdf ds11">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
-        </div>
-        <div class="attachment-info">
-          <div class="attachment-name">EFTA02438880.pdf</div>
-          <div class="attachment-meta">Data Set 11 · Justice.gov Epstein Library</div>
-          <div class="attachment-note">Search "02438880" on the Data Set 11 page</div>
-        </div>
-        <div class="attachment-action">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--gmail-text-secondary)"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
-        </div>
+      <a href="https://www.justice.gov/usao-sdny/jeffrey-epstein-records#dataset11" target="_blank" class="doc-item">
+        <div class="doc-icon alt"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg></div>
+        <div><div class="doc-name">EFTA02438880.pdf</div><div class="doc-meta">Data Set 11 · Justice.gov</div><div class="doc-hint">Search "02438880" on page</div></div>
       </a>
-
-      <a href="https://www.justice.gov/d9/2024-12/EFTA01951982.pdf" target="_blank" class="attachment-card">
-        <div class="attachment-icon pdf">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
-        </div>
-        <div class="attachment-info">
-          <div class="attachment-name">EFTA01951982.pdf</div>
-          <div class="attachment-meta">Data Set 10 · Justice.gov</div>
-        </div>
-        <div class="attachment-action">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--gmail-text-secondary)"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
-        </div>
+      <a href="https://www.justice.gov/d9/2024-12/EFTA01951982.pdf" target="_blank" class="doc-item">
+        <div class="doc-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg></div>
+        <div><div class="doc-name">EFTA01951982.pdf</div><div class="doc-meta">Data Set 10 · Justice.gov</div></div>
       </a>
-
     </div>
-    <div class="leaked-footer">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--gmail-text-secondary)"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+    <div class="docs-bottom">
+      <svg width="12" height="12" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
       All files sourced from the U.S. Department of Justice — Jeffrey Epstein Records
     </div>
   </div>
+</section>
 
-  <!-- WHAT IS GOYIM -->
-  <div class="info-section">
-    <div class="info-header">
-      <h2>📧 What is "Goyim"?</h2>
-      <p>Understanding the term used in the leaked Epstein email</p>
-    </div>
+<div class="divider">Section 02</div>
 
-    <!-- IMAGE PLACEHOLDER - Replace src with your image -->
-    <div style="text-align:center; padding: 32px 32px 0;">
-      <img id="goyim-image" src="myimage.png" alt="$GOYIM" style="max-width: 280px; width: 100%; border-radius: 12px; border: 2px dashed var(--gmail-border);">
-      <!-- TO ADD YOUR IMAGE: Replace YOUR_IMAGE_HERE.png with your image filename -->
+<section class="about-section" id="about">
+  <div class="section-tag">Intel Brief</div>
+  <h2 class="section-heading">What is "Goyim"?</h2>
+  <div class="about-image">
+    <img src="myimage.png" alt="" onerror="this.style.display='none'">
+  </div>
+  <div class="info-stack">
+    <div class="info-item">
+      <div class="info-item-head"><span class="info-item-icon">📖</span><h3>Definition</h3></div>
+      <p>"Goyim" (singular: "goy") is a Hebrew and Yiddish word meaning "nations" or "peoples." In everyday usage it refers to non-Jewish people. The term appears in the Torah and has been part of the Hebrew language for thousands of years — a neutral, descriptive term in its original context.</p>
     </div>
-    <div class="info-body">
-      <div class="info-card">
-        <h3><span class="icon">📖</span> Definition</h3>
-        <p>"Goyim" (singular: "goy") is a Hebrew and Yiddish word that simply means "nations" or "peoples." In everyday usage, it refers to non-Jewish people. The term appears in the Torah and has been part of the Hebrew language for thousands of years. It is a neutral, descriptive term in its original context — similar to how many languages have words to distinguish between in-group and out-group members.</p>
-      </div>
-      <div class="info-card">
-        <h3><span class="icon">📜</span> Historical Context</h3>
-        <p>The word has ancient roots in biblical Hebrew, where "goy" originally meant "nation" and could refer to any nation, including Israel itself. Over centuries, the usage shifted in common Yiddish to refer specifically to non-Jewish people. While it's a standard part of the vocabulary in Jewish communities, its use in Epstein's email — alongside antisemitic stereotypes about financial manipulation — demonstrates how language can be weaponized regardless of its original meaning.</p>
-      </div>
-      <div class="info-card">
-        <h3><span class="icon">📰</span> The Leaked Email</h3>
-        <p>This email, dated October 23, 2009, was sent from Jeffrey Epstein to Roger Schank. In it, Epstein discusses shipping futures and forward freight agreements (FFAs), referencing content from "Shipping News." The email was leaked as part of the broader disclosure of Epstein's private communications and has since become widely circulated online due to its controversial language and the notoriety of its sender.</p>
-      </div>
-      <div class="info-card">
-        <h3><span class="icon">🪙</span> $GOYIM Token</h3>
-        <p>$GOYIM is a memecoin on the Solana blockchain inspired by this leaked email. It exists purely as a cultural commentary token with no intrinsic value or utility. As with all memecoins, participation involves significant financial risk. Do your own research and never invest more than you can afford to lose.</p>
-      </div>
+    <div class="info-item">
+      <div class="info-item-head"><span class="info-item-icon">📜</span><h3>Historical Context</h3></div>
+      <p>The word has ancient roots in biblical Hebrew, where "goy" originally meant "nation" and could refer to any nation, including Israel itself. Over centuries, usage shifted in common Yiddish to refer specifically to non-Jewish people.</p>
+    </div>
+    <div class="info-item">
+      <div class="info-item-head"><span class="info-item-icon">📰</span><h3>The Leaked Email</h3></div>
+      <p>Dated October 23, 2009, sent from Jeffrey Epstein to Roger Schank. Discusses shipping futures and forward freight agreements (FFAs). Leaked as part of the broader disclosure of Epstein's private communications through U.S. Department of Justice records.</p>
+    </div>
+    <div class="info-item">
+      <div class="info-item-head"><span class="info-item-icon">🪙</span><h3>$GOYIM Token</h3></div>
+      <p>A memecoin on the Solana blockchain inspired by this leaked email. No intrinsic value or utility. As with all memecoins, participation involves significant financial risk. DYOR.</p>
     </div>
   </div>
+</section>
 
-  <!-- TOKEN INFO -->
-  <div class="token-section">
-    <div class="token-grid">
-      <div class="token-cell">
-        <label>Token Name</label>
-        <div class="value ticker">$GOYIM</div>
-      </div>
-      <div class="token-cell">
-        <label>Blockchain</label>
-        <div class="value">Solana (SOL)</div>
-      </div>
-      <div class="token-cell full">
-        <label>Contract Address (CA)</label>
-        <div class="ca-box" onclick="copyCA(this)">
-          <span class="ca-text">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span>
-          <svg class="copy-icon" width="20" height="20" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-          <span class="copied-tooltip">Copied!</span>
-        </div>
-        <p style="font-size: 12px; color: var(--gmail-text-secondary); margin-top: 8px;">⚠️ </p>
-      </div>
-    </div>
-  </div>
+<footer>
+  <p>$GOYIM is a memecoin with no intrinsic value or expectation of financial return. Not financial advice. DYOR.<br>For informational and entertainment purposes only.</p>
+</footer>
 
-  <!-- SOCIAL LINKS -->
-  <div class="social-section">
-    <span>Links:</span>
-    <a href="https://x.com/" target="_blank" class="social-btn primary">
-      <svg viewBox="0 0 24 24" fill="white" width="18" height="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      Twitter / X
-    </a>
-    <a href="https://x.com/search?q=goyim&src=typed_query" target="_blank" class="social-btn mindshare-btn">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
-      🔥 Mindshare — Viral on X
-      <span class="mindshare-pulse"></span>
-    </a>
-  </div>
-
-  <div class="gmail-footer">
-    $GOYIM is a memecoin with no intrinsic value or expectation of financial return. This is not financial advice. DYOR.<br>
-    This site is for informational and entertainment purposes only. Not affiliated with Google or Gmail.<br>
-    <span style="opacity: 0.5;">0.001 GB of 15 GB used · Terms · Privacy · Program Policies</span>
-  </div>
-
-</main>
-
-<script>
-function copyCA(el) {
-  const text = el.querySelector('.ca-text').textContent;
-  navigator.clipboard.writeText(text).then(() => {
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function copyCA(el){
+  navigator.clipboard.writeText(el.querySelector('.ca-val').textContent).then(()=>{
     el.classList.add('copied');
-    setTimeout(() => el.classList.remove('copied'), 1500);
+    setTimeout(()=>el.classList.remove('copied'),1500);
   });
 }
-
-function copySearchCA() {
-  const input = document.getElementById('ca-search');
-  navigator.clipboard.writeText(input.value).then(() => {
-    const msg = document.getElementById('ca-copied-msg');
-    msg.style.opacity = '1';
-    setTimeout(() => msg.style.opacity = '0', 1500);
-  });
-}
-</script>
-</body>
-</html>
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting){x.target.style.opacity='1';x.target.style.transform='translateY(0)'}})
+},{threshold:.08});
+document.querySel
