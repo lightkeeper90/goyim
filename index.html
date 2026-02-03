@@ -6,14 +6,14 @@
 <title>$GOYIM — CLASSIFIED</title>
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f8f7f4;--bg2:#ffffff;--bg3:#f0efec;--bg4:#e8e7e4;--red:#c41e1e;--red-dim:#d44040;--red-gl:rgba(196,30,30,.08);--white:#1a1a1a;--white-d:#3a3a3a;--gray:#888;--gray-d:#bbb;--paper:#ffffff;--bdr:rgba(196,30,30,.15);--bdr-s:rgba(0,0,0,.08)}
+:root{--bg:#ffffff;--bg2:#ffffff;--bg3:#f5f5f5;--bg4:#eeeeee;--red:#c41e1e;--red-dim:#d44040;--red-gl:rgba(196,30,30,.08);--white:#1a1a1a;--white-d:#3a3a3a;--gray:#888;--gray-d:#bbb;--paper:#ffffff;--bdr:rgba(196,30,30,.15);--bdr-s:rgba(0,0,0,.08)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 ::selection{background:var(--red);color:#fff}
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.015'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(248,247,244,.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--bdr-s)}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(255,255,255,.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--bdr-s)}
 .nav-brand{display:flex;align-items:center;gap:12px}
 .nav-brand .stamp{width:32px;height:32px;border:2px solid var(--red);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'Special Elite',monospace;font-size:11px;color:var(--red);letter-spacing:1px;transform:rotate(-3deg)}
 .nav-brand span{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:16px;letter-spacing:3px}
@@ -143,7 +143,7 @@ footer p{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gray-d
 
 @media(max-width:768px){
 nav{padding:0 20px}
-.nav-links{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(248,247,244,.97);flex-direction:column;padding:28px;gap:20px;border-bottom:1px solid var(--bdr-s)}
+.nav-links{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(255,255,255,.97);flex-direction:column;padding:28px;gap:20px;border-bottom:1px solid var(--bdr-s)}
 .nav-links.open{display:flex}
 .mobile-toggle{display:flex}
 .hero{padding:110px 20px 70px}
