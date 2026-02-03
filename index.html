@@ -36,11 +36,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
 .classified-stamp::before{content:'●';margin-right:8px;animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 
-.hero-image-frame{width:100%;max-width:760px;aspect-ratio:3/1;background:var(--paper);border:1px solid var(--bdr-s);display:flex;align-items:center;justify-content:center;margin-bottom:32px;position:relative;box-shadow:0 4px 40px rgba(0,0,0,.08),0 0 80px var(--red-gl)}
-.hero-image-frame::before,.hero-image-frame::after{content:'';position:absolute;width:20px;height:20px;border-color:var(--red-dim);border-style:solid}
-.hero-image-frame::before{top:8px;left:8px;border-width:2px 0 0 2px}
-.hero-image-frame::after{bottom:8px;right:8px;border-width:0 2px 2px 0}
-.hero-image-frame img{width:100%;height:100%;object-fit:cover}
+.hero-image-frame{width:100%;max-width:760px;aspect-ratio:3/1;background:var(--paper);border:none;display:flex;align-items:center;justify-content:center;margin-bottom:32px;position:relative;box-shadow:none}
+.hero-image-frame::before,.hero-image-frame::after{display:none}
+.hero-image-frame img{width:100%;height:100%;object-fit:cover;mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%)}
 .hero-image-frame .ph{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#999;letter-spacing:2px}
 
 .hero-ticker{font-family:'IBM Plex Mono',monospace;font-size:48px;font-weight:700;letter-spacing:8px;margin-bottom:16px}
@@ -198,6 +196,10 @@ nav{padding:0 20px}
     </a>
     <a href="https://x.com/search?q=goyim&src=typed_query" target="_blank" class="action-btn">
       <span class="live"></span> 🔥 Mindshare
+    </a>
+    <a href="https://www.tiktok.com/search?q=goyim&t=1770133373857" target="_blank" class="action-btn">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.87a8.16 8.16 0 004.76 1.52v-3.4a4.85 4.85 0 01-1-.3z"/></svg>
+      TikTok
     </a>
   </div>
 
